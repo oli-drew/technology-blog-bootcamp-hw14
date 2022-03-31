@@ -3,4 +3,18 @@ module.exports = {
     // Format date to local format
     return date.toLocaleDateString();
   },
+  is_even: (num) => {
+    if (num % 2 == 0) {
+      return true;
+    }
+  },
+  is_odd: (num) => {
+    if (num % 2 != 0) {
+      return true;
+    }
+  },
+  make_substring: (str) => {
+    if (str.length > 100) return `${str.substring(0, 100)}...`;
+    return str;
+  },
 };
