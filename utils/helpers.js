@@ -17,4 +17,7 @@ module.exports = {
     if (str.length > 100) return `${str.substring(0, 100)}...`;
     return str;
   },
+  upper_case: (str) => {
+    return str.toUpperCase();
+  },
 };

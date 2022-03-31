@@ -1,26 +1,40 @@
 <div class="row">
   <div class="col-auto">
-    <h2>Welcome, {{name}}!</h2>
+    <h2>Welcome, {{upper_case name}}!</h2>
   </div>
 </div>
 
 <div class="row mt-4">
-  <div class="col-md-6">
-    <h3>Create a New Blog Post:</h3>
-
-    <form class="form new-post-form">
-      <div class="form-group">
-        <label for="post-title">post title:</label>
-        <input class="form-input" type="text" id="post-title" name="post-title" />
+  <div class="col-md-6 mb-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Create a New Blog Post</h5>
+        <form class="form new-post-form">
+          <div class="form-group">
+            {{!--  --}}
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="post-title-label">Post Title</span>
+              <input type="text" class="form-control" placeholder="Post title" aria-label="post-title" aria-describedby="post-title-label" id="post-title" maxlength="100">
+            </div>
+            {{!--  --}}
+            {{!-- <label for="post-title">post title:</label>
+            <input class="form-input" type="text" id="post-title" name="post-title" /> --}}
+          </div>
+          <div class="form-group">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="post-content-label">Content</span>
+              <textarea type="text" class="form-control" placeholder="Your amazing content here.." aria-label="post-content-label" aria-describedby="post-content-label" id="post-content"></textarea>
+            </div>
+              {{!--  --}}
+            {{!-- <label for="post-content">content:</label>
+            <textarea class="form-input" id="post-content" name="post-content"></textarea> --}}
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-secondary">Create</button>
+          </div>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="post-content">content:</label>
-        <textarea class="form-input" id="post-content" name="post-content"></textarea>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
-      </div>
-    </form>
+    </div>
   </div>
 
   {{#if posts.length}}
