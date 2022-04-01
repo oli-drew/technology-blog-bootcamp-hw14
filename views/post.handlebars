@@ -21,6 +21,7 @@
     {{!-- end for --}}
 
   {{!-- Add comment --}}
+    {{#if logged_in}}
     <div>
       <div class="text-center mb-1">
         <textarea class="form-control" id="commentInput" rows="3" placeholder="Leave a comment on this post.."></textarea>
@@ -29,6 +30,9 @@
         <button class="btn btn-secondary" type="submit">Submit Comment</button>
       </div>
     </div>
+    {{/if}}
 
   </div>
 </div>
+
+<script src="./js/comment.js"></script>
