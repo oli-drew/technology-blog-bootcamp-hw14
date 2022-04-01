@@ -41,6 +41,9 @@ document
   .querySelector(".new-post-form")
   .addEventListener("submit", newFormHandler);
 
-document
-  .querySelector(".post-list")
-  .addEventListener("click", delButtonHandler);
+// Only do this if the class exists
+if (document.querySelector("#postList")) {
+  document
+    .querySelector(".post-list")
+    .addEventListener("click", delButtonHandler);
+}

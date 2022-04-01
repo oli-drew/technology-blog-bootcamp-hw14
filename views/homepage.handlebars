@@ -1,19 +1,23 @@
 {{#each posts as |post| }}
   {{#if @first}}
   {{!-- Featured first post --}}
-  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
-    <div class="col-md-6 px-0">
-      <h1 class="display-4 fst-italic">
-        {{post.title}}
-      </h1>
-      <p class="lead my-3">
-        {{make_substring post.content}}
-      </p>
-      <p class="lead mb-0">
-        <a href="/post/{{post.id}}" class="text-white fw-bold">Continue reading...</a>
-      </p>
+  <a href="/post/{{post.id}}" class="text-white text-decoration-none">
+    <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+      <div class="col-md-8 px-0">
+        <h1 class="display-4 fst-italic">
+          {{post.title}}
+        </h1>
+        
+        <p class="lead my-3">
+          {{make_substring post.content}}
+        </p>
+        <span class="text-muted m-0 p-0">{{format_date post.date_created}}</span>
+        <p class="lead mb-0">
+          {{!-- <a href="/post/{{post.id}}" class="text-white fw-bold stretched-link">Continue reading...</a> --}}
+        </p>
+      </div>
     </div>
-  </div>
+  </a>
   {{else}}
   
   {{#if (is_odd @index)}}
@@ -23,7 +27,7 @@
           <div class="card-body">
             <h5 class="card-title">{{post.title}}</h5>
             <p class="card-text">{{make_substring post.content}}</p>
-            <a href="/post/{{post.id}}" class="text-black">Continue reading</a>
+            <a href="/post/{{post.id}}" class="text-black stretched-link">Continue reading...</a>
           </div>
           <div class="card-footer text-muted">
             {{post.user.name}} - {{format_date post.date_created}}
@@ -37,7 +41,7 @@
           <div class="card-body">
             <h5 class="card-title">{{post.title}}</h5>
             <p class="card-text">{{make_substring post.content}}</p>
-            <a href="/post/{{post.id}}" class="text-black">Continue reading</a>
+            <a href="/post/{{post.id}}" class="text-black stretched-link">Continue reading...</a>
           </div>
           <div class="card-footer text-muted">
             {{post.user.name}} - {{format_date post.date_created}}
