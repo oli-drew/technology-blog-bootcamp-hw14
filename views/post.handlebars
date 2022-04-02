@@ -23,7 +23,7 @@
 
   {{!-- Add comment --}}
     {{#if logged_in}}
-    <div>
+    <div id="postId" data-post="{{id}}">
       <form class="form new-comment-form">
       <div class="text-center mb-1">
         <textarea class="form-control" id="commentInput" rows="3" placeholder="Leave a comment on this post.."></textarea>
