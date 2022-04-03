@@ -20,4 +20,9 @@ module.exports = {
   upper_case: (str) => {
     return str.toUpperCase();
   },
+  user_match: (id, id2) => {
+    if (id === id2) {
+      return true;
+    }
+  },
 };

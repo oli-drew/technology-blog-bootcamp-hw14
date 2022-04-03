@@ -27,29 +27,33 @@ const newCommentHandler = async (event) => {
   }
 };
 
-//   const delButtonHandler = async (event) => {
-//     if (event.target.hasAttribute("data-id")) {
-//       const id = event.target.getAttribute("data-id");
+const deleteComment = async (event) => {
+  if (event.target.hasAttribute("data-comment")) {
+    const post_id = document.querySelector("#postId").dataset.post;
+    const id = event.target.getAttribute("data-comment");
 
-//       const response = await fetch(`/api/posts/${id}`, {
-//         method: "DELETE",
-//       });
+    const response = await fetch(`/api/comments/${id}`, {
+      method: "DELETE",
+    });
 
-//       if (response.ok) {
-//         document.location.replace("/profile");
-//       } else {
-//         alert("Failed to delete post");
-//       }
-//     }
-//   };
+    if (response.ok) {
+      document.location.replace(`/post/${post_id}`);
+    } else {
+      alert("Failed to delete post");
+    }
+  }
+};
 
-document
-  .querySelector(".new-comment-form")
-  .addEventListener("submit", newCommentHandler);
+// Add new comment event listener if user is logged in
+if (document.querySelector(".new-comment-form")) {
+  document
+    .querySelector(".new-comment-form")
+    .addEventListener("submit", newCommentHandler);
+}
 
-// Only do this if the class exists
-//   if (document.querySelector("#postList")) {
-//     document
-//       .querySelector(".post-list")
-//       .addEventListener("click", delButtonHandler);
-//   }
+// Add delete button event listener if a comment exists
+if (document.querySelector(".comment")) {
+  document.querySelectorAll(".delete-comment-btn").forEach((item) => {
+    item.addEventListener("click", deleteComment);
+  });
+}

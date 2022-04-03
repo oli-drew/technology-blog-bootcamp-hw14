@@ -22,12 +22,15 @@ const newFormHandler = async (event) => {
 };
 
 const delButtonHandler = async (event) => {
-  if (event.target.hasAttribute("data-id")) {
-    const id = event.target.getAttribute("data-id");
+  console.log("clicked");
+  if (event.currentTarget.hasAttribute("data-id")) {
+    const id = event.currentTarget.getAttribute("data-id");
 
     const response = await fetch(`/api/posts/${id}`, {
       method: "DELETE",
     });
+
+    console.log(`post id is ${id}`);
 
     if (response.ok) {
       document.location.replace("/profile");
@@ -41,9 +44,9 @@ document
   .querySelector(".new-post-form")
   .addEventListener("submit", newFormHandler);
 
-// Only do this if the class exists
+// Only add delete event listener if the class exists
 if (document.querySelector("#postList")) {
-  document
-    .querySelector(".post-list")
-    .addEventListener("click", delButtonHandler);
+  document.querySelectorAll(".delete-post-btn").forEach((item) => {
+    item.addEventListener("click", delButtonHandler);
+  });
 }

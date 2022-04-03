@@ -11,12 +11,18 @@
   <div class="col-md-8">
 
     {{#each comments as |comment|}}
-    <div class="card mb-3 test">
+    <div class="card mb-3 comment">
       <div class="card-body">
-        <blockquote class="blockquote mb-0">
           <p>{{comment.content}}</p>
-          <footer class="blockquote-footer">{{comment.user.name}} {{format_date comment.date_created}}</footer>
-        </blockquote>
+      </div>
+      <div class="card-footer">
+        <span>- {{comment.user.name}} {{format_date comment.date_created}}</span>
+        {{!-- Only show the delete button to comment creator --}}
+        {{#if (user_match ../userId comment.user.id)}}
+        <button class="btn btn-sm btn-danger float-end delete-comment-btn" data-comment="{{comment.id}}" type="button">
+          Delete
+        </button>
+        {{/if}}
       </div>
     </div>
     {{/each}}
@@ -37,5 +43,4 @@
 
   </div>
 </div>
-
 <script src="../js/comment.js"></script>
