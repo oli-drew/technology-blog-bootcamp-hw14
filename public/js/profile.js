@@ -37,29 +37,70 @@ const delButtonHandler = async (event) => {
   }
 };
 
+// CLick update button
+// --> get id of post
+// ---> open modal
 const updateButtonHandler = async (event) => {
-  console.log("update clicked");
   if (event.currentTarget.hasAttribute("data-id")) {
     const id = event.currentTarget.getAttribute("data-id");
+    console.log(id);
+    // Get modal and set data-id
+    const modalElement = document.getElementById("updateModal");
+    modalElement.dataset.id = id;
 
-    const title = "updated-title";
-    const content = "updated-content";
+    // // Get current post values by id
+    // getBlogPost(id);
+    // // Fill title and content
+    // let currentTitle = "hello";
+    // let currentContent = "hello mum";
+    // document.querySelector("#update-post-title").value = currentTitle;
+    // document.querySelector("#update-post-content").value = currentContent;
 
-    const response = await fetch(`/api/posts/${id}`, {
-      method: "PUT",
-      body: JSON.stringify({ title, content }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+    // Add event listener to modal button
+    document
+      .querySelector("#updatePostBtn")
+      .addEventListener("click", updateBlogPost);
+
+    // Open modal
+    let updateModal = new bootstrap.Modal(modalElement, {
+      keyboard: false,
     });
+    updateModal.show();
+  }
+};
 
-    console.log(`post id is ${id}`);
+const updateBlogPost = async () => {
+  // Values
+  const id = document.getElementById("updateModal").getAttribute("data-id");
+  const title = document.querySelector("#update-post-title").value.trim();
+  const content = document.querySelector("#update-post-content").value.trim();
 
-    if (response.ok) {
-      document.location.replace("/profile");
-    } else {
-      alert("Failed to delete post");
-    }
+  const response = await fetch(`/api/posts/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({ title, content }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (response.ok) {
+    document.location.replace("/profile");
+  } else {
+    alert("Failed to update post");
+  }
+};
+
+// Get request for current post data to fill in values
+const getBlogPost = async (id) => {
+  const response = await fetch(`/api/posts/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (response.ok) {
+    console.log(response);
+  } else {
+    alert("Failed to get post");
   }
 };
 
