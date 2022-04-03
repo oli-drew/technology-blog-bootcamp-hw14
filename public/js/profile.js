@@ -22,12 +22,35 @@ const newFormHandler = async (event) => {
 };
 
 const delButtonHandler = async (event) => {
-  console.log("clicked");
   if (event.currentTarget.hasAttribute("data-id")) {
     const id = event.currentTarget.getAttribute("data-id");
 
     const response = await fetch(`/api/posts/${id}`, {
       method: "DELETE",
+    });
+
+    if (response.ok) {
+      document.location.replace("/profile");
+    } else {
+      alert("Failed to delete post");
+    }
+  }
+};
+
+const updateButtonHandler = async (event) => {
+  console.log("update clicked");
+  if (event.currentTarget.hasAttribute("data-id")) {
+    const id = event.currentTarget.getAttribute("data-id");
+
+    const title = "updated-title";
+    const content = "updated-content";
+
+    const response = await fetch(`/api/posts/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({ title, content }),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
 
     console.log(`post id is ${id}`);
@@ -40,6 +63,7 @@ const delButtonHandler = async (event) => {
   }
 };
 
+// Create new post event listener
 document
   .querySelector(".new-post-form")
   .addEventListener("submit", newFormHandler);
@@ -48,5 +72,12 @@ document
 if (document.querySelector("#postList")) {
   document.querySelectorAll(".delete-post-btn").forEach((item) => {
     item.addEventListener("click", delButtonHandler);
+  });
+}
+
+// Only add update event listener if the class exists
+if (document.querySelector("#postList")) {
+  document.querySelectorAll(".update-post-btn").forEach((item) => {
+    item.addEventListener("click", updateButtonHandler);
   });
 }

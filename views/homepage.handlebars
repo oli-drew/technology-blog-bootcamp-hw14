@@ -11,7 +11,7 @@
         <p class="lead my-3">
           {{make_substring post.content}}
         </p>
-        <span class="text-muted m-0 p-0">{{format_date post.date_created}}</span>
+        <span class="text-muted m-0 p-0">{{post.user.name}} - {{format_date post.date_created}}</span>
       </div>
     </div>
   </a>
