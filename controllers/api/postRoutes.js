@@ -34,6 +34,22 @@ router.put("/:id", withAuth, async (req, res) => {
   }
 });
 
+// Get a blog post by id
+router.get("/:id", async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [],
+    });
+    if (!postData) {
+      res.status(404).json({ message: "No blog post found with this id!" });
+      return;
+    }
+    res.status(200).json(postData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.delete("/:id", withAuth, async (req, res) => {
   try {
     const postData = await Post.destroy({

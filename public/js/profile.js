@@ -37,9 +37,7 @@ const delButtonHandler = async (event) => {
   }
 };
 
-// CLick update button
-// --> get id of post
-// ---> open modal
+// Update blog post
 const updateButtonHandler = async (event) => {
   if (event.currentTarget.hasAttribute("data-id")) {
     const id = event.currentTarget.getAttribute("data-id");
@@ -49,12 +47,12 @@ const updateButtonHandler = async (event) => {
     modalElement.dataset.id = id;
 
     // // Get current post values by id
-    // getBlogPost(id);
+    const blogPost = await getBlogPost(id);
     // // Fill title and content
-    // let currentTitle = "hello";
-    // let currentContent = "hello mum";
-    // document.querySelector("#update-post-title").value = currentTitle;
-    // document.querySelector("#update-post-content").value = currentContent;
+    let currentTitle = blogPost.title;
+    let currentContent = blogPost.content;
+    document.querySelector("#update-post-title").value = currentTitle;
+    document.querySelector("#update-post-content").value = currentContent;
 
     // Add event listener to modal button
     document
@@ -98,7 +96,7 @@ const getBlogPost = async (id) => {
     },
   });
   if (response.ok) {
-    console.log(response);
+    return response.json();
   } else {
     alert("Failed to get post");
   }
