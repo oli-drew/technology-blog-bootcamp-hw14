@@ -22,6 +22,7 @@ const loginFormHandler = async (event) => {
   }
 };
 
+// Signup form function
 const signupFormHandler = async (event) => {
   event.preventDefault();
 

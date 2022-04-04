@@ -1,3 +1,4 @@
+// Create blog post function
 const newFormHandler = async (event) => {
   event.preventDefault();
 
@@ -21,6 +22,7 @@ const newFormHandler = async (event) => {
   }
 };
 
+// Delete blog post function
 const delButtonHandler = async (event) => {
   if (event.currentTarget.hasAttribute("data-id")) {
     const id = event.currentTarget.getAttribute("data-id");

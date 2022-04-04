@@ -50,6 +50,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// Delete blog post by id
 router.delete("/:id", withAuth, async (req, res) => {
   try {
     const postData = await Post.destroy({

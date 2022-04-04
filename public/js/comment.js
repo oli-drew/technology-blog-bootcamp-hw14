@@ -1,5 +1,6 @@
 console.log("comments loaded");
 
+// Create comment function
 const newCommentHandler = async (event) => {
   event.preventDefault();
 
@@ -27,6 +28,7 @@ const newCommentHandler = async (event) => {
   }
 };
 
+// Delete comment function
 const deleteComment = async (event) => {
   if (event.target.hasAttribute("data-comment")) {
     const post_id = document.querySelector("#postId").dataset.post;
